@@ -12,6 +12,12 @@ const KEYWORDS = Object.freeze({
     NOT: 'NOT'
 });
 
+const SORTING_KEYS = Object.freeze({
+    ASC: 'ASC',
+    DESC: 'DESC'
+});
+
 module.exports = {
-    KEYWORDS
+    KEYWORDS,
+    SORTING_KEYS
 };

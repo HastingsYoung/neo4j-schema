@@ -1,6 +1,6 @@
 {
   "name": "neo4j-schema",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "The ORM library for neo4j in Javascript.",
   "main": "index.js",
   "dependencies": {

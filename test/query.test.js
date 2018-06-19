@@ -6,7 +6,7 @@ describe('Query Test', function () {
 
     describe('Construct simple read query', function () {
 
-        it('should be able to construct a match & return query', function (done) {
+        it('should be able to construct a match & return query.', function (done) {
 
             const query = new Query();
 
@@ -40,7 +40,7 @@ describe('Query Test', function () {
             done();
         });
 
-        it('should be able to construct a match & where & return query', function (done) {
+        it('should be able to construct a match & where & return query.', function (done) {
 
             const query = new Query();
 
@@ -90,9 +90,46 @@ describe('Query Test', function () {
             done();
         });
 
+        it('should be able to construct a sorting query.', function (done) {
+
+            const query = new Query();
+
+            const construction = query.match('neo4j:Database {"name":"NEO4J"}')
+                .hasDirectedRelation('isHostedBy')
+                .toNode({
+                    variable: 'user',
+                    label: 'Admin'
+                })
+                .where({
+                    user: {
+                        name: {
+                            $in: ['Tom', 'Jack', 'House']
+                        }, age: {
+                            $gte: 20,
+                            $lte: 40
+                        }
+                    },
+                    database: {
+                        value: {
+                            $gt: 10,
+                            $lt: 100
+                        }
+                    }
+                })
+                .return(['*'])
+                .orderBy({'user.name': 'desc', 'age': -1})
+                .skip(5)
+                .limit(10)
+                .construct();
+
+            expect(construction).to.be.a('string');
+
+            done();
+        });
+
     });
 
-    describe('Construct simple write query', function () {
+    describe.skip('Construct simple write query.', function () {
 
         const db = new Neo4JDB().connect();
         const PersonSchema = Neo4JDB.Schema({
@@ -110,7 +147,7 @@ describe('Query Test', function () {
             tags: ['group A', 'group B', 'group C']
         };
 
-        it('should be able to construct a create & return query', function (done) {
+        it('should be able to construct a create & return query.', function (done) {
 
             Person.create(nodeObj)
                 .return(['*'])

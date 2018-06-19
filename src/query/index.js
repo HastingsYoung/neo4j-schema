@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const util = require('util');
 const Errors = require('../errors');
-const {KEYWORDS} = require('./syntax');
+const {KEYWORDS, SORTING_KEYS} = require('./syntax');
 const {translateFilterToQuery} = require('./filters');
 
 const REGEXP_PATTERN_STR = /^(\w+)?(?::?)(\w+)?(?:\s*)({.*})?/i;
@@ -101,7 +101,7 @@ class Query {
      * @returns {Query}
      */
     hasRelation(pattern) {
-        this._stack.push(`-${pattern ? '[' + new Pattern(pattern).toString() + ']': ''}-`);
+        this._stack.push(`-${pattern ? '[' + new Pattern(pattern).toString() + ']' : ''}-`);
         return this;
     }
 
@@ -111,7 +111,7 @@ class Query {
      * @returns {Query}
      */
     hasDirectedRelation(pattern) {
-        this._stack.push(`-${pattern ? '[' + new Pattern(pattern).toString() + ']': ''}->`);
+        this._stack.push(`-${pattern ? '[' + new Pattern(pattern).toString() + ']' : ''}->`);
         return this;
     }
 
@@ -121,7 +121,7 @@ class Query {
      * @returns {Query}
      */
     hasReverseDirectedRelation(pattern) {
-        this._stack.push(`<-${pattern ? '[' + new Pattern(pattern).toString() + ']': ''}-`);
+        this._stack.push(`<-${pattern ? '[' + new Pattern(pattern).toString() + ']' : ''}-`);
         return this;
     }
 
@@ -146,15 +146,20 @@ class Query {
         return this;
     }
 
-    orderBy(args) {
+    orderBy(props) {
+        this._stack.push(`${KEYWORDS.ORDER_BY} ${Object.keys(props)
+            .map(k => `${k}${props[k] < 0 || props[k].toUpperCase() === SORTING_KEYS.DESC ? (' ' + SORTING_KEYS.DESC) : ''}`)
+            .join(', ')}`);
         return this;
     }
 
-    skip(args) {
+    skip(num) {
+        this._stack.push(`${KEYWORDS.SKIP} ${num}`);
         return this;
     }
 
-    limit(args) {
+    limit(num) {
+        this._stack.push(`${KEYWORDS.LIMIT} ${num}`);
         return this;
     }
 
@@ -167,7 +172,7 @@ class Query {
         if (!(_.isArray(fields))) {
             throw new Error(Errors.ERR_INVALID_RETURN_FIELDS);
         }
-        this._stack.push(`${KEYWORDS.RETURN} ${fields.join(',')};`);
+        this._stack.push(`${KEYWORDS.RETURN} ${fields.join(',')}`);
         return this;
     }
 
@@ -193,7 +198,7 @@ class Query {
      * @returns {String}
      */
     construct() {
-        return this._stack.join(' ');
+        return this._stack.join(' ') + ';';
     }
 
     /**
