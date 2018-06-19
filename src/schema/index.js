@@ -11,14 +11,16 @@ class Schema {
     }
 
     /**
-     * Transpile lean object to joi schema.
+     * Transpile lean object to Joi schema.
      * @param {Object} obj
      * @example
      * {
      *      id: {type: String, required: true},
      *      group: {type: String, default: 'User', enum: ['Admin', 'User']},
-     *      age: {type: Number}
+     *      age: {type: Number},
+     *      createdAt: {type: Date, default: Date.now}
      * }
+     * @returns {JoiSchema}
      */
     static transpile(obj) {
         const keys = Object.keys(obj);
@@ -122,8 +124,12 @@ class Schema {
         return schema;
     }
 
+    /**
+     * Return a model function.
+     * @param {DB} db The DB instance such model should inherit from.
+     * @returns {Model} The compiled model function.
+     */
     model(db) {
-        // return a model class which can be initiated with "new"
         return this.compile(db, this._methods);
     }
 
@@ -154,6 +160,12 @@ class Schema {
         return model;
     }
 
+    /**
+     * Return a model function.
+     * @param db
+     * @param methods
+     * @returns {Model}
+     */
     compile(db, methods) {
 
         const model = (function (self, db) {

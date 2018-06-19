@@ -34,7 +34,8 @@
   "scripts": {
     "build": "babel src -d lib",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint --ext .js src"
+    "lint": "./node_modules/.bin/eslint --ext .js src",
+    "doc": "./node_modules/.bin/doxdox './src/**/*.js' --layout bootstrap --output docs/index.html && open ./docs/index.html"
   },
   "keywords": [
     "neo4j",

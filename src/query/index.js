@@ -64,13 +64,19 @@ class Pattern {
 class Query {
 
     static get DefaultOptions() {
-
+        return {};
     }
 
     static isQuery(q) {
         return q instanceof Query;
     }
 
+    /**
+     * The Query constructor used for building queries. This could be instantiated by calling Model behavioural functions such as `Model.match()`.
+     * @param {DB | Session} callee The callee to run such query when it's been constructed.
+     * @param {Model} model The model of which such query should be constrained to.
+     * @param {Object} opts
+     */
     constructor(callee, model, opts) {
         this._callee = callee;
         this._model = model;
@@ -81,7 +87,7 @@ class Query {
     /**
      * Match clause.
      * @param {Pattern | String} pattern
-     * @example match('patternStr' | {label: 'str', var: 'n'});
+     * @example match('patternStr' | {label: 'str', variable: 'n'});
      * @returns {Query}
      */
     match(pattern) {
@@ -90,7 +96,7 @@ class Query {
     }
 
     /**
-     * Basic relation clause.
+     * Basic relation clause, also known as `--`.
      * @param {Pattern | String} pattern
      * @returns {Query}
      */
@@ -100,7 +106,7 @@ class Query {
     }
 
     /**
-     * Directed relation clause.
+     * Directed relation clause, also known as `-->`.
      * @param {Pattern | String} pattern
      * @returns {Query}
      */
@@ -110,7 +116,7 @@ class Query {
     }
 
     /**
-     * Directed relation clause in reverse.
+     * Reverse directed relation clause, also known as `<--`.
      * @param {Pattern | String} pattern
      * @returns {Query}
      */
@@ -119,11 +125,22 @@ class Query {
         return this;
     }
 
+    /**
+     * The node such query should point to.
+     * @param {Pattern | String} pattern
+     * @returns {Query}
+     */
     toNode(pattern) {
         this._stack.push(`(${new Pattern(pattern).toString()})`);
         return this;
     }
 
+    /**
+     * Where clause.
+     * @param filters
+     * @param options
+     * @returns {Query}
+     */
     where(filters, options) {
         this._stack.push(`${KEYWORDS.WHERE} ${Object.keys(filters).map(f => translateFilterToQuery(f.toString(), filters[f], options)).join(` ${KEYWORDS.AND} `)}`);
         return this;
@@ -143,7 +160,7 @@ class Query {
 
     /**
      * Return clause.
-     * @param {Array<String>} fields
+     * @param {Array<String>} fields The fields to return in a query.
      * @returns {Query}
      */
     return(fields) {
@@ -158,6 +175,11 @@ class Query {
         return this;
     }
 
+    /**
+     * Create clause.
+     * @param {Object} nodeObj The object instance to create.
+     * @returns {Query}
+     */
     create(nodeObj) {
         this._stack.push(`${KEYWORDS.CREATE} (${new Pattern({
             variable: 'n',
@@ -166,10 +188,18 @@ class Query {
         return this;
     }
 
+    /**
+     * Return a string of constructed query.
+     * @returns {String}
+     */
     construct() {
         return this._stack.join(' ');
     }
 
+    /**
+     * Return a promise, the first argument of which includes the results resolved from the query.
+     * @returns {Promise}
+     */
     exec() {
         return this._callee.run(this.construct());
     }
