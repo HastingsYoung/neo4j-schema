@@ -1,7 +1,7 @@
 {
   "name": "neo4j-schema",
   "version": "0.1.4",
-  "description": "The ORM library for neo4j in Javascript.",
+  "description": "A dead-simple client for neo4j in Javascript.",
   "main": "index.js",
   "dependencies": {
     "generic-pool": "^3.4.2",
@@ -24,8 +24,9 @@
     "chai": "^4.1.2",
     "doxdox": "^2.0.3",
     "eslint": "^4.19.1",
-    "eslint-loader": "1.9.0",
     "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "1.9.0",
+    "gh-pages": "^1.2.0",
     "mocha": "^5.2.0",
     "webpack": "3.5.1",
     "webpack-dev-server": "2.7.1",
@@ -35,7 +36,8 @@
     "build": "babel src -d lib",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "./node_modules/.bin/eslint --ext .js src",
-    "doc": "./node_modules/.bin/doxdox './src/**/*.js' --layout bootstrap --output docs/index.html && open ./docs/index.html"
+    "doc": "./node_modules/.bin/doxdox './src/**/*.js' --layout bootstrap --output docs/index.html && open ./docs/index.html",
+    "deploy": "gh-pages -d docs"
   },
   "keywords": [
     "neo4j",
