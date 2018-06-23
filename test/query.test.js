@@ -129,7 +129,7 @@ describe('Query Test', function () {
 
     });
 
-    describe.skip('Construct simple write query.', function () {
+    describe.only('Construct simple write query.', function () {
 
         const db = new Neo4JDB().connect();
         const PersonSchema = Neo4JDB.Schema({
@@ -147,9 +147,41 @@ describe('Query Test', function () {
             tags: ['group A', 'group B', 'group C']
         };
 
+        before(function (done) {
+            Person.create({
+                variable: 'n',
+                label: 'Person',
+                props: nodeObj
+            })
+                .return(['*'])
+                .exec()
+                .then(docs => {
+                    done();
+                }).catch(e => {
+                    console.error(e);
+                });
+        });
+
+        after(function (done) {
+
+            Person.match({variable: 'n', label: 'Person'})
+                .detachDelete(['n'])
+                .exec()
+                .then(docs => {
+                    done();
+                })
+                .catch(e => {
+                    console.error(e);
+                });
+        });
+
         it('should be able to construct a create & return query.', function (done) {
 
-            Person.create(nodeObj)
+            Person.create({
+                variable: 'n',
+                label: 'Person',
+                props: nodeObj
+            })
                 .return(['*'])
                 .exec()
                 .then(docs => {
@@ -157,6 +189,52 @@ describe('Query Test', function () {
                     done();
                 }).catch(e => {
                     console.error(e);
+                });
+        });
+
+        it('should be able to remove a matched records from the query', function (done) {
+
+            Person.match({variable: 'n', label: 'Person'})
+                .detachDelete(['n'])
+                .exec()
+                .then(docs => {
+                    expect(docs).to.be.an('array');
+                    done();
+                })
+                .catch(e => {
+                    console.error(e);
+                });
+
+        });
+
+        it('should be able to count the number of matched records', function (done) {
+
+            Person.match({variable: 'n', label: 'Person'})
+                .count()
+                .exec()
+                .then(docs => {
+                    expect(docs[0]).to.have.property('_fields').that.includes(0);
+                    done();
+                });
+        });
+
+        it('should be able to remove label from matched records', function (done) {
+
+            Person.match({variable: 'n', label: 'Person'})
+                .remove({variable: 'n', label: 'Person'})
+                .exec()
+                .then(docs => {
+                    done();
+                });
+        });
+
+        it('should be able to remove property from matched records', function (done) {
+
+            Person.match({variable: 'n', label: 'Person'})
+                .removeProperty('n', 'name')
+                .exec()
+                .then(docs => {
+                    done();
                 });
         });
 

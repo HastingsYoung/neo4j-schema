@@ -6,10 +6,15 @@ const KEYWORDS = Object.freeze({
     SKIP: 'SKIP',
     LIMIT: 'LIMIT',
     RETURN: 'RETURN',
+    REMOVE: 'REMOVE',
     CREATE: 'CREATE',
+    SET: 'SET',
     IN: 'IN',
     AND: 'AND',
-    NOT: 'NOT'
+    NOT: 'NOT',
+    DETACH: 'DETACH',
+    DELETE: 'DELETE',
+    UNION: 'UNION'
 });
 
 const SORTING_KEYS = Object.freeze({

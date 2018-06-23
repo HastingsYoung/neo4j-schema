@@ -40,7 +40,7 @@ const translateFilterToQuery = (sub, fts = {}, opts = {}) => {
                     case '$eq':
                         query.push(`${sub}.${k} <= ${target[tk]}`);
                         break;
-                    case '$neq':
+                    case '$ne':
                         query.push(`${sub}.${k} <> ${target[tk]}`);
                         break;
                     case '$in':

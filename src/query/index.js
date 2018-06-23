@@ -53,6 +53,30 @@ class Pattern {
         return pattern;
     }
 
+    get variable() {
+        return this.args.variable;
+    }
+
+    get label() {
+        return this.args.label;
+    }
+
+    get props() {
+        return this.args.props;
+    }
+
+    toLabelString() {
+        const pattern = this.args,
+            alphabet = genAlphabet(1);
+        return `${pattern.variable || alphabet.pop()}${pattern.hasOwnProperty('label') ? ':' + pattern.label : ''}`;
+    }
+
+    toMapString() {
+        const pattern = this.args,
+            alphabet = genAlphabet(1);
+        return `${pattern.variable || alphabet.pop()}${pattern.props ? ' ' + util.inspect(pattern.props) : ''}`;
+    }
+
     toString() {
         const pattern = this.args,
             alphabet = genAlphabet(1);
@@ -86,7 +110,7 @@ class Query {
 
     /**
      * Match clause.
-     * @param {Pattern | String} pattern
+     * @param {Object<Pattern> | String} pattern
      * @example match('patternStr' | {label: 'str', variable: 'n'});
      * @returns {Query}
      */
@@ -97,7 +121,7 @@ class Query {
 
     /**
      * Basic relation clause, also known as `--`.
-     * @param {Pattern | String} pattern
+     * @param {Object<Pattern> | String} pattern
      * @returns {Query}
      */
     hasRelation(pattern) {
@@ -107,7 +131,7 @@ class Query {
 
     /**
      * Directed relation clause, also known as `-->`.
-     * @param {Pattern | String} pattern
+     * @param {Object<Pattern> | String} pattern
      * @returns {Query}
      */
     hasDirectedRelation(pattern) {
@@ -117,7 +141,7 @@ class Query {
 
     /**
      * Reverse directed relation clause, also known as `<--`.
-     * @param {Pattern | String} pattern
+     * @param {Object<Pattern> | String} pattern
      * @returns {Query}
      */
     hasReverseDirectedRelation(pattern) {
@@ -127,7 +151,7 @@ class Query {
 
     /**
      * The node such query should point to.
-     * @param {Pattern | String} pattern
+     * @param {Object<Pattern> | String} pattern
      * @returns {Query}
      */
     toNode(pattern) {
@@ -137,7 +161,7 @@ class Query {
 
     /**
      * Where clause.
-     * @param filters
+     * @param filters {Object<Filters>}
      * @param options
      * @returns {Query}
      */
@@ -146,6 +170,11 @@ class Query {
         return this;
     }
 
+    /**
+     * Order By clause.
+     * @param props
+     * @returns {Query}
+     */
     orderBy(props) {
         this._stack.push(`${KEYWORDS.ORDER_BY} ${Object.keys(props)
             .map(k => `${k}${props[k] < 0 || props[k].toUpperCase() === SORTING_KEYS.DESC ? (' ' + SORTING_KEYS.DESC) : ''}`)
@@ -153,13 +182,65 @@ class Query {
         return this;
     }
 
+    /**
+     * Skip clause.
+     * @param num
+     * @returns {Query}
+     */
     skip(num) {
         this._stack.push(`${KEYWORDS.SKIP} ${num}`);
         return this;
     }
 
+    /**
+     * Limit clause.
+     * @param num
+     * @returns {Query}
+     */
     limit(num) {
         this._stack.push(`${KEYWORDS.LIMIT} ${num}`);
+        return this;
+    }
+
+    /**
+     * Delete clause.
+     * @param {Array<String>} vars Variable names of nodes/relationships to delete from database.
+     * @param {Object} opts
+     * @param {Boolean} opts.isDetach Decide if the matched instances should also remove all existing relationships during their deletion.
+     * @returns {Query}
+     */
+    delete(vars, opts) {
+        this._stack.push(`${opts.isDetach ? KEYWORDS.DETACH + ' ' : ''}${KEYWORDS.DELETE} ${vars.join(', ')}`);
+        return this;
+    }
+
+    /**
+     * Detach Delete clause. This method is equivalent to delete(vars, {isDetach: true}).
+     * @param {Array<String>} vars Variable names of nodes/relationships to delete from database.
+     * @returns {Query}
+     */
+    detachDelete(vars) {
+        return this.delete(vars, {isDetach: true});
+    }
+
+    /**
+     * Remove clause.
+     * @param {Object<Pattern> | String} pattern
+     * @returns {Query}
+     */
+    remove(pattern) {
+        this._stack.push(`${KEYWORDS.REMOVE} ${new Pattern(pattern).toLabelString()}`);
+        return this;
+    }
+
+    /**
+     * Remove property of matched instance.
+     * @param {String} variable Variable name.
+     * @param {String} property Property name.
+     * @returns {Query}
+     */
+    removeProperty(variable, property) {
+        this._stack.push(`${KEYWORDS.REMOVE} ${variable}.${property}`);
         return this;
     }
 
@@ -176,20 +257,57 @@ class Query {
         return this;
     }
 
+    /**
+     * Count clause.
+     * @returns {Query}
+     */
     count() {
+        this._stack.push(`${KEYWORDS.RETURN} count(*)`);
+        return this;
+    }
+
+    /**
+     * Union clause.
+     * @returns {Query}
+     */
+    union() {
+        this._stack.push(` ${KEYWORDS.UNION} `);
         return this;
     }
 
     /**
      * Create clause.
-     * @param {Object} nodeObj The object instance to create.
+     * @param {Object<Pattern> | String} pattern The pattern specifying which instance to create.
      * @returns {Query}
      */
-    create(nodeObj) {
-        this._stack.push(`${KEYWORDS.CREATE} (${new Pattern({
-            variable: 'n',
-            props: this._model.validate(nodeObj)
-        }).toString()})`);
+    create(pattern) {
+        this._stack.push(`${KEYWORDS.CREATE} (${new Pattern(_.isString(pattern) ? pattern : Object.assign({}, pattern, {
+            props: this._model.validate(pattern.props)
+        })).toString()})`);
+        return this;
+    }
+
+    /**
+     * Set clause.
+     * @param {Object<Pattern> | String} pattern The pattern specifying which instance to update.
+     * @param {Boolean} upSert Decide if the properties of node matched should be created if doesn't exist.
+     * @returns {Query}
+     */
+    set(pattern, upSert = true) {
+        const p = new Pattern(pattern);
+        const final = [];
+
+        this._model.validate(p.props);
+
+        if (p.props) {
+            final.push(`${p.variable} ${upSert ? '+=' : '='} ${util.inspect(p.props)}`);
+        }
+
+        if (p.label) {
+            final.push(`${p.toLabelString()}`);
+        }
+
+        this._stack.push(`${KEYWORDS.SET} ${final.join(', ')}`);
         return this;
     }
 
