@@ -8,6 +8,13 @@ const _ = require('lodash');
 
 class DB {
 
+    /**
+     * Database constructor.
+     * @param {Object} options DB options.
+     * @param {Object} options.conn Connection options (uri: <String>, username: <String>, password: <String>).
+     * @example
+     * const db = new Neo4JDB({conn: {uri: 'bolt://localhost:7474', username: 'neo4j', password: 'neo4j'}}).connect();
+     */
     constructor(options) {
         this._options = Object.assign({}, DB.DefaultOptions, options);
         this._pool = null;
@@ -31,6 +38,11 @@ class DB {
         };
     }
 
+    /**
+     * Connect to database.
+     * @param {...Object} configs
+     * @returns {DB}
+     */
     connect(...configs) {
 
         this._driver = driver(this._options.conn, ...configs);
