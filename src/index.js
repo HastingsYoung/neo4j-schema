@@ -11,9 +11,10 @@ class DB {
     /**
      * Database constructor.
      * @param {Object} options DB options.
-     * @param {Object} options.conn Connection options (uri: <String>, username: <String>, password: <String>).
+     * @param {Object} options.conn Connection options (uri: `<String>`, username: `<String>`, password: `<String>`).
      * @example
      * const db = new Neo4JDB({conn: {uri: 'bolt://localhost:7474', username: 'neo4j', password: 'neo4j'}}).connect();
+     * @returns {DB}
      */
     constructor(options) {
         this._options = Object.assign({}, DB.DefaultOptions, options);
