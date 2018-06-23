@@ -33,8 +33,8 @@
   "scripts": {
     "build": "babel src -d lib",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "./node_modules/.bin/eslint --ext .js src",
-    "doc": "./node_modules/.bin/doxdox './src/**/*.js' --layout bootstrap --output docs/index.html && open ./docs/index.html",
+    "lint": "eslint --ext .js src",
+    "doc": "doxdox './src/**/*.js' --layout bootstrap --output docs/index.html && open ./docs/index.html",
     "deploy": "gh-pages -d docs"
   },
   "keywords": [
@@ -45,6 +45,22 @@
     "javascript",
     "nodejs"
   ],
+  "engines": {
+    "node": ">=8.11.3"
+  },
   "author": "hastings_gl@outlook.com",
-  "license": "MIT"
+  "license": "MIT",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HastingsYoung/neo4j-schema.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HastingsYoung/neo4j-schema/issues"
+  },
+  "homepage": "https://github.com/HastingsYoung/neo4j-schema#readme"
 }
