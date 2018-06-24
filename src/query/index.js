@@ -161,8 +161,20 @@ class Query {
 
     /**
      * Where clause.
-     * @param filters {Object<Filters>}
+     * @param {Object<Filters>} filters A filters map object that bears exactly the same APIs as in MongoDB.
      * @param options
+     * @example
+     * .where({
+     *      user: {
+     *           name: {
+     *              $in: ['Tom', 'Jack', 'House']
+     *           },
+     *           age: {
+     *              $gte: 20,
+     *              $lte: 40
+     *           }
+     *     }
+     * })
      * @returns {Query}
      */
     where(filters, options) {
@@ -172,19 +184,24 @@ class Query {
 
     /**
      * Order By clause.
-     * @param props
+     * @param {Object} params Sort the matched documents by properties.
+     * @example
+     * .orderBy({
+     *      name: 1     // sort by field "name" in alphanumeric order
+     *      age: -1     // and sort by field "age" in descendant order.
+     * })
      * @returns {Query}
      */
-    orderBy(props) {
-        this._stack.push(`${KEYWORDS.ORDER_BY} ${Object.keys(props)
-            .map(k => `${k}${props[k] < 0 || props[k].toUpperCase() === SORTING_KEYS.DESC ? (' ' + SORTING_KEYS.DESC) : ''}`)
+    orderBy(params) {
+        this._stack.push(`${KEYWORDS.ORDER_BY} ${Object.keys(params)
+            .map(k => `${k}${params[k] < 0 || params[k].toUpperCase() === SORTING_KEYS.DESC ? (' ' + SORTING_KEYS.DESC) : ''}`)
             .join(', ')}`);
         return this;
     }
 
     /**
      * Skip clause.
-     * @param num
+     * @param {Number} num
      * @returns {Query}
      */
     skip(num) {
@@ -194,7 +211,7 @@ class Query {
 
     /**
      * Limit clause.
-     * @param num
+     * @param {Number} num
      * @returns {Query}
      */
     limit(num) {
