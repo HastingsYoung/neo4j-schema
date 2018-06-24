@@ -1007,8 +1007,9 @@ input[type="search"]::-webkit-search-cancel-button {
                                     <tr>
                                         <td>filters</td>
                                         <td>
+                                            <code>Object.&lt;Filters&gt;</code>
                                         </td>
-                                        <td><p>{Object<Filters>}</p>
+                                        <td><p>A filters map object that bears exactly the same APIs as in MongoDB.</p>
 </td>
                                         <td>
                                         </td>
@@ -1029,6 +1030,27 @@ input[type="search"]::-webkit-search-cancel-button {
                         </section>
 
 
+
+
+                        <section class="examples">
+
+                            <h3>Examples</h3>
+
+
+                                <pre><code class="hljs javascript">.where({
+     <span class="hljs-attr">user</span>: {
+          <span class="hljs-attr">name</span>: {
+             <span class="hljs-attr">$in</span>: [<span class="hljs-string">'Tom'</span>, <span class="hljs-string">'Jack'</span>, <span class="hljs-string">'House'</span>]
+          },
+          <span class="hljs-attr">age</span>: {
+             <span class="hljs-attr">$gte</span>: <span class="hljs-number">20</span>,
+             <span class="hljs-attr">$lte</span>: <span class="hljs-number">40</span>
+          }
+    }
+})</code></pre>
+
+
+                        </section>
 
 
                         <section class="returns">
@@ -1054,7 +1076,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
                         <h2 id="src-query-index.js-orderby">
                             <a href="#src-query-index.js-orderby" class="permalink">#</a>
-                            <span class="method-name" title="orderBy(props)">orderBy(props)</span>
+                            <span class="method-name" title="orderBy(params)">orderBy(params)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1083,10 +1105,12 @@ input[type="search"]::-webkit-search-cancel-button {
 
                                     <tbody>
                                     <tr>
-                                        <td>props</td>
+                                        <td>params</td>
                                         <td>
+                                            <code>Object</code>
                                         </td>
-                                        <td></td>
+                                        <td><p>Sort the matched documents by properties.</p>
+</td>
                                         <td>
                                         </td>
                                     </tr>
@@ -1098,6 +1122,20 @@ input[type="search"]::-webkit-search-cancel-button {
                         </section>
 
 
+
+
+                        <section class="examples">
+
+                            <h3>Examples</h3>
+
+
+                                <pre><code class="hljs javascript">.orderBy({
+     <span class="hljs-attr">name</span>: <span class="hljs-number">1</span>     <span class="hljs-comment">// sort by field "name" in alphanumeric order</span>
+     age: <span class="hljs-number">-1</span>     <span class="hljs-comment">// and sort by field "age" in descendant order.</span>
+})</code></pre>
+
+
+                        </section>
 
 
                         <section class="returns">
@@ -1154,6 +1192,7 @@ input[type="search"]::-webkit-search-cancel-button {
                                     <tr>
                                         <td>num</td>
                                         <td>
+                                            <code>Number</code>
                                         </td>
                                         <td></td>
                                         <td>
@@ -1223,6 +1262,7 @@ input[type="search"]::-webkit-search-cancel-button {
                                     <tr>
                                         <td>num</td>
                                         <td>
+                                            <code>Number</code>
                                         </td>
                                         <td></td>
                                         <td>
