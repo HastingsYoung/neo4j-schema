@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
-<title>neo4j-schema 0.1.5 &#8212; A dead-simple client for neo4j in Javascript.</title>
+<title>neo4j-schema 0.1.6 &#8212; A dead-simple client for neo4j in Javascript.</title>
 <meta name="description" content="A dead-simple client for neo4j in Javascript.">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -162,8 +162,8 @@ input[type="search"]::-webkit-search-cancel-button {
     <div class="container">
 
         <h1>
-                neo4j-schema
-            <small>0.1.5</small>
+                <a href="https://github.com/HastingsYoung/neo4j-schema#readme">neo4j-schema</a>
+            <small>0.1.6</small>
         </h1>
 
         <p>A dead-simple client for neo4j in Javascript.</p>
@@ -301,17 +301,17 @@ input[type="search"]::-webkit-search-cancel-button {
 
 
                         <li class="method-link scope-public">
+                            <a href="#src-query-index.js-merge" title="merge">merge</a>
+                        </li>
+
+
+                        <li class="method-link scope-public">
                             <a href="#src-query-index.js-set" title="set">set</a>
                         </li>
 
 
                         <li class="method-link scope-public">
                             <a href="#src-query-index.js-construct" title="construct">construct</a>
-                        </li>
-
-
-                        <li class="method-link scope-public">
-                            <a href="#src-query-index.js-exec" title="exec">exec</a>
                         </li>
 
 
@@ -402,7 +402,7 @@ input[type="search"]::-webkit-search-cancel-button {
                                         <td>
                                             <code>Object</code>
                                         </td>
-                                        <td><p>Connection options (uri: <String>, username: <String>, password: <String>).</p>
+                                        <td><p>Connection options (uri: <code>&lt;String&gt;</code>, username: <code>&lt;String&gt;</code>, password: <code>&lt;String&gt;</code>).</p>
 </td>
                                         <td>
                                         </td>
@@ -433,7 +433,13 @@ input[type="search"]::-webkit-search-cancel-button {
                             <h3>Returns</h3>
 
 
-                            <p><code>Void</code></p>
+
+                                    <p>
+                                            <code>DB</code>
+                                    </p>
+
+                                    
+
 
 
                         </section>
@@ -1781,6 +1787,78 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
+                        <h2 id="src-query-index.js-merge">
+                            <a href="#src-query-index.js-merge" class="permalink">#</a>
+                            <span class="method-name" title="merge(pattern)">merge(pattern)</span>
+                        </h2>
+
+                        <div class="description lead">
+
+                            <p>Merge clause.</p>
+
+
+                        </div>
+
+
+                        <section class="parameters">
+
+                            <h3>Parameters</h3>
+
+                            <div class="table-responsive">
+                                <table class="table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td>pattern</td>
+                                        <td>
+                                            <code>Object.&lt;Pattern&gt;</code>
+                                            <code>String</code>
+                                        </td>
+                                        <td><p>The pattern specifying which instance to merge (update or create).</p>
+</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </section>
+
+
+
+
+                        <section class="returns">
+
+                            <h3>Returns</h3>
+
+
+
+                                    <p>
+                                            <code>Query</code>
+                                    </p>
+
+                                    
+
+
+
+                        </section>
+
+                    </div>
+
+
+                    <div class="method scope-public">
+
                         <h2 id="src-query-index.js-set">
                             <a href="#src-query-index.js-set" class="permalink">#</a>
                             <span class="method-name" title="set(pattern, upSert)">set(pattern, upSert)</span>
@@ -1886,42 +1964,6 @@ input[type="search"]::-webkit-search-cancel-button {
 
                                     <p>
                                             <code>String</code>
-                                    </p>
-
-                                    
-
-
-
-                        </section>
-
-                    </div>
-
-
-                    <div class="method scope-public">
-
-                        <h2 id="src-query-index.js-exec">
-                            <a href="#src-query-index.js-exec" class="permalink">#</a>
-                            <span class="method-name" title="exec()">exec()</span>
-                        </h2>
-
-                        <div class="description lead">
-
-                            <p>Return a promise, the first argument of which includes the results resolved from the query.</p>
-
-
-                        </div>
-
-
-
-
-                        <section class="returns">
-
-                            <h3>Returns</h3>
-
-
-
-                                    <p>
-                                            <code>Promise</code>
                                     </p>
 
                                     
