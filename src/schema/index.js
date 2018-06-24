@@ -162,6 +162,7 @@ class Schema {
                 enumerable: true
             }
         });
+
         return model;
     }
 
@@ -174,13 +175,11 @@ class Schema {
     compile(db, methods) {
 
         const model = (function (self, db) {
-            return function () {
+            return function Model() {
                 this._db = db;
                 this._schema = self;
             };
         }(this, db));
-
-        model.prototype = Object.create(Schema.prototype);
 
         this.setDefaultMethods(db, model);
 

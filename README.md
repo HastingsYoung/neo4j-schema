@@ -39,10 +39,10 @@ Person.create({
       }).return(['*'])
         .exec()
         .then(docs => {
-            console.log(docs);   // Node {
+            console.log(docs);   // [Node {
                                  //      labels: ['Person'],
                                  //      properties: {name: 'foo', age: 25, tags: ['group A', 'group B', 'group C'], isAdmin: false, createdAt: 1529831729}
-                                 // }
+                                 // }]
         }).catch(e => {
              console.error(e);
         });
