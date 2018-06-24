@@ -288,6 +288,18 @@ class Query {
     }
 
     /**
+     * Merge clause.
+     * @param {Object<Pattern> | String} pattern The pattern specifying which instance to merge (update or create).
+     * @returns {Query}
+     */
+    merge(pattern) {
+        this._stack.push(`${KEYWORDS.MERGE} (${new Pattern(_.isString(pattern) ? pattern : Object.assign({}, pattern, {
+            props: this._model.validate(pattern.props)
+        })).toString()})`);
+        return this;
+    }
+
+    /**
      * Set clause.
      * @param {Object<Pattern> | String} pattern The pattern specifying which instance to update.
      * @param {Boolean} upSert Decide if the properties of node matched should be created if doesn't exist.
@@ -321,10 +333,11 @@ class Query {
 
     /**
      * Return a promise, the first argument of which includes the results resolved from the query.
-     * @returns {Promise}
+     * @returns {Promise<Array<Node>>}
      */
-    exec() {
-        return this._callee.run(this.construct());
+    async exec() {
+        const result = await this._callee.run(this.construct());
+        return result.records.map(rec => rec._fields);
     }
 }
 

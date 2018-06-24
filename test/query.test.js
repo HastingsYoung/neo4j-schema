@@ -129,7 +129,7 @@ describe('Query Test', function () {
 
     });
 
-    describe.only('Construct simple write query.', function () {
+    describe('Construct simple write query.', function () {
 
         const db = new Neo4JDB().connect();
         const PersonSchema = Neo4JDB.Schema({
@@ -213,7 +213,7 @@ describe('Query Test', function () {
                 .count()
                 .exec()
                 .then(docs => {
-                    expect(docs[0]).to.have.property('_fields').that.includes(0);
+                    expect(docs[0]).to.be.an('array').that.includes(0);
                     done();
                 });
         });

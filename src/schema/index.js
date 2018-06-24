@@ -146,6 +146,11 @@ class Schema {
                 writable: false,
                 enumerable: true
             },
+            merge: {
+                value: args => new Query(db, model).merge(args),
+                writable: false,
+                enumerable: true
+            },
             validate: {
                 value: obj => {
                     const result = Joi.validate(obj, this._schema);

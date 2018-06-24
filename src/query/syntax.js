@@ -8,6 +8,7 @@ const KEYWORDS = Object.freeze({
     RETURN: 'RETURN',
     REMOVE: 'REMOVE',
     CREATE: 'CREATE',
+    MERGE: 'MERGE',
     SET: 'SET',
     IN: 'IN',
     AND: 'AND',
