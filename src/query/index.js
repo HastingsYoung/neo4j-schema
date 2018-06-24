@@ -188,7 +188,7 @@ class Query {
      * @example
      * .orderBy({
      *      name: 1     // sort by field "name" in alphanumeric order
-     *      age: -1     // and sort by field "age" in descendant order.
+     *      age: -1     // and then sort by field "age" in descendant order.
      * })
      * @returns {Query}
      */
@@ -358,4 +358,4 @@ class Query {
     }
 }
 
-module.exports = Query;
+module.exports = exports = Query;

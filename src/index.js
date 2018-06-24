@@ -84,6 +84,19 @@ class DB {
         await this._pool.destroy(session);
     }
 
+    /**
+     * Defines a model in database.
+     * @param {String} name Name of model as marked in DB.
+     * @param {Schema} schema The data schema such model should be compliant with.
+     * @example
+     * const Neo4j = require('neo4j-schema');
+     * let person = Neo4j.model('person', Neo4j.Schema({
+     *                                      name: String,
+     *                                      age: Number,
+     *                                      group: [String]
+     *                                    }));
+     * @returns {Model}
+     */
     model(name, schema) {
         if (!(schema instanceof Schema)) {
             throw new Error(Errors.ERR_INVALID_SCHEMA);
