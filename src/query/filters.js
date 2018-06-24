@@ -2,7 +2,7 @@ const _ = require('lodash');
 const ERRORS = require('../errors');
 const {KEYWORDS} = require('./syntax');
 
-const translateFilterToQuery = (sub, fts = {}, opts = {}) => {
+const translateFilterToQuery = (sub, fts = {}) => {
 
     const query = [];
 

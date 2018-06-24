@@ -14,7 +14,7 @@ class Queryable {
             throw Errors.ERR_INVALID_QUERY;
         }
 
-        return await conn.run(query);;
+        return await conn.run(query);
     }
 }
 
