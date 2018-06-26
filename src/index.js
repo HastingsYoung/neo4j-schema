@@ -2,6 +2,7 @@ const driver = require('./driver');
 const genericPool = require('generic-pool');
 const Session = require('./session');
 const Schema = require('./schema');
+const Query = require('./query');
 const Defs = require('./constants');
 const Errors = require('./errors');
 const _ = require('lodash');
@@ -127,4 +128,7 @@ class DB {
     }
 }
 
-module.exports = DB;
+exports = module.exports = DB;
+
+exports.Session = Session;
+exports.Query = Query;

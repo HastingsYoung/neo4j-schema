@@ -1,14 +1,22 @@
 # Neo4j Schema
+[![npm version](https://badge.fury.io/js/neo4j-schema.svg)](https://badge.fury.io/js/neo4j-schema)
 
 A dead-simple client for neo4j in Javascript.
-
-[API](https://hastingsyoung.github.io/neo4j-schema/)
 
 ## Features
 1. Mongoose-like syntax, flat learning curve, bootstrap Javascript developers to access Neo4J in minutes.
 2. Resource pooling, automatically reuse connection resources to cut down network overhead.
 3. Support schema validation with built-in Joi-schema.
 4. Support ES6, ES7 syntax.
+
+## Documentation
+* [API](https://hastingsyoung.github.io/neo4j-schema/)
+* [Guide]()
+
+## Installation
+```sh
+npm install --save neo4j-schema
+```
 
 ## Example
 ```javascript
@@ -28,6 +36,7 @@ const PersonSchema = Neo4JDB.Schema({
         });
 const Person = db.model('person', PersonSchema);
 
+// Create
 Person.create({
           variable: 'n',
           label: 'Person',
@@ -45,5 +54,23 @@ Person.create({
                                  // }]
         }).catch(e => {
              console.error(e);
+        });
+
+// Match
+let query = new Query(db);
+query.match({
+          variable: 'n',
+          label: 'Person'
+        })
+        .where({
+            name: 'foo',
+            age: {$gt: 20}
+        })
+        .return(['*'])
+        .exec()
+        .then(docs => {
+            console.log(docs);
+        }).catch(e => {
+            console.error(e);
         });
 ```

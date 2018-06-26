@@ -1,6 +1,6 @@
 const {expect} = require('chai');
 const Neo4JDB = require('../src/index');
-const Query = require('../src/query');
+const Query = Neo4JDB.Query;
 
 describe('Query Test', function () {
 
@@ -127,6 +127,24 @@ describe('Query Test', function () {
             done();
         });
 
+    });
+
+    describe('Construct simple read query.', function () {
+
+        const db = new Neo4JDB().connect();
+        const query = new Query(db, null, null);
+
+        it('should return constructed query result', function (done) {
+
+            query.return(['1'])
+                .exec()
+                .then(docs => {
+                    expect(docs).to.be.an('array').with.length(1);
+                    done();
+                }).catch(e => {
+                    console.error(e);
+                });
+        });
     });
 
     describe('Construct simple write query.', function () {
