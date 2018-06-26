@@ -21,6 +21,7 @@ npm install --save neo4j-schema
 ## Example
 ```javascript
 const Neo4JDB = require('neo4j-schema');
+const Query = Neo4JDB.Query;
 const db = new Neo4JDB({
     uri: 'bolt://localhost',
     username: 'neo4j',
@@ -57,7 +58,7 @@ Person.create({
         });
 
 // Match
-let query = new Query(db);
+let query = new Query(db);      // alternatively, use Person.match()
 query.match({
           variable: 'n',
           label: 'Person'
@@ -69,7 +70,10 @@ query.match({
         .return(['*'])
         .exec()
         .then(docs => {
-            console.log(docs);
+            console.log(docs);  // [Node {
+                                //      labels: ['Person'],
+                                //      properties: {name: 'foo', age: 25, tags: ['group A', 'group B', 'group C'], isAdmin: false, createdAt: 1529831729}
+                                // }]
         }).catch(e => {
             console.error(e);
         });
