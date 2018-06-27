@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
-<title>neo4j-schema 0.1.7 &#8212; A dead-simple client for neo4j in Javascript.</title>
+<title>neo4j-schema 0.2.0 &#8212; A dead-simple client for neo4j in Javascript.</title>
 <meta name="description" content="A dead-simple client for neo4j in Javascript.">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -163,7 +163,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
         <h1>
                 <a href="https://github.com/HastingsYoung/neo4j-schema#readme">neo4j-schema</a>
-            <small>0.1.7</small>
+            <small>0.2.0</small>
         </h1>
 
         <p>A dead-simple client for neo4j in Javascript.</p>
@@ -216,107 +216,117 @@ input[type="search"]::-webkit-search-cancel-button {
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-constructor" title="constructor">constructor</a>
+                            <a href="#src-query-index.js-new-pattern" title="new Pattern">new Pattern</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-match" title="match">match</a>
+                            <a href="#src-query-index.js-pattern.prototype.constructor" title="Pattern.constructor">Pattern.constructor</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-hasrelation" title="hasRelation">hasRelation</a>
+                            <a href="#src-query-index.js-pattern.prototype.constructor" title="Pattern.constructor">Pattern.constructor</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-hasdirectedrelation" title="hasDirectedRelation">hasDirectedRelation</a>
+                            <a href="#src-query-index.js-pattern.prototype.match" title="Pattern.match">Pattern.match</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-hasreversedirectedrelation" title="hasReverseDirectedRelation">hasReverseDirectedRelation</a>
+                            <a href="#src-query-index.js-pattern.prototype.hasrelation" title="Pattern.hasRelation">Pattern.hasRelation</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-tonode" title="toNode">toNode</a>
+                            <a href="#src-query-index.js-pattern.prototype.hasdirectedrelation" title="Pattern.hasDirectedRelation">Pattern.hasDirectedRelation</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-where" title="where">where</a>
+                            <a href="#src-query-index.js-pattern.prototype.hasreversedirectedrelation" title="Pattern.hasReverseDirectedRelation">Pattern.hasReverseDirectedRelation</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-orderby" title="orderBy">orderBy</a>
+                            <a href="#src-query-index.js-pattern.prototype.tonode" title="Pattern.toNode">Pattern.toNode</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-skip" title="skip">skip</a>
+                            <a href="#src-query-index.js-pattern.prototype.where" title="Pattern.where">Pattern.where</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-limit" title="limit">limit</a>
+                            <a href="#src-query-index.js-pattern.prototype.orderby" title="Pattern.orderBy">Pattern.orderBy</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-delete" title="delete">delete</a>
+                            <a href="#src-query-index.js-pattern.prototype.skip" title="Pattern.skip">Pattern.skip</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-detachdelete" title="detachDelete">detachDelete</a>
+                            <a href="#src-query-index.js-pattern.prototype.limit" title="Pattern.limit">Pattern.limit</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-remove" title="remove">remove</a>
+                            <a href="#src-query-index.js-pattern.prototype.delete" title="Pattern.delete">Pattern.delete</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-removeproperty" title="removeProperty">removeProperty</a>
+                            <a href="#src-query-index.js-pattern.prototype.detachdelete" title="Pattern.detachDelete">Pattern.detachDelete</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-return" title="return">return</a>
+                            <a href="#src-query-index.js-pattern.prototype.remove" title="Pattern.remove">Pattern.remove</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-count" title="count">count</a>
+                            <a href="#src-query-index.js-pattern.prototype.removeproperty" title="Pattern.removeProperty">Pattern.removeProperty</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-union" title="union">union</a>
+                            <a href="#src-query-index.js-pattern.prototype.return" title="Pattern.return">Pattern.return</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-create" title="create">create</a>
+                            <a href="#src-query-index.js-pattern.prototype.count" title="Pattern.count">Pattern.count</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-merge" title="merge">merge</a>
+                            <a href="#src-query-index.js-pattern.prototype.union" title="Pattern.union">Pattern.union</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-set" title="set">set</a>
+                            <a href="#src-query-index.js-pattern.prototype.create" title="Pattern.create">Pattern.create</a>
                         </li>
 
 
                         <li class="method-link scope-public">
-                            <a href="#src-query-index.js-construct" title="construct">construct</a>
+                            <a href="#src-query-index.js-pattern.prototype.merge" title="Pattern.merge">Pattern.merge</a>
+                        </li>
+
+
+                        <li class="method-link scope-public">
+                            <a href="#src-query-index.js-pattern.prototype.set" title="Pattern.set">Pattern.set</a>
+                        </li>
+
+
+                        <li class="method-link scope-public">
+                            <a href="#src-query-index.js-pattern.prototype.construct" title="Pattern.construct">Pattern.construct</a>
                         </li>
 
 
@@ -628,9 +638,134 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-constructor">
-                            <a href="#src-query-index.js-constructor" class="permalink">#</a>
-                            <span class="method-name" title="constructor(callee, model, opts)">constructor(callee, model, opts)</span>
+                        <h2 id="src-query-index.js-new-pattern">
+                            <a href="#src-query-index.js-new-pattern" class="permalink">#</a>
+                            <span class="method-name" title="new Pattern()">new Pattern()</span>
+                        </h2>
+
+                        <div class="description lead">
+
+                            <p>The pattern used to match nodes in the graph.</p>
+
+
+                        </div>
+
+
+
+
+                        <section class="returns">
+
+                            <h3>Returns</h3>
+
+
+                            <p><code>Void</code></p>
+
+
+                        </section>
+
+                    </div>
+
+
+                    <div class="method scope-public">
+
+                        <h2 id="src-query-index.js-pattern.prototype.constructor">
+                            <a href="#src-query-index.js-pattern.prototype.constructor" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.constructor(args)">Pattern.constructor(args)</span>
+                        </h2>
+
+                        <div class="description lead">
+
+                            
+
+                        </div>
+
+
+                        <section class="parameters">
+
+                            <h3>Parameters</h3>
+
+                            <div class="table-responsive">
+                                <table class="table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td>args</td>
+                                        <td>
+                                            <code>Object</code>
+                                            <code>String</code>
+                                        </td>
+                                        <td></td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>args.variable</td>
+                                        <td>
+                                            <code>String</code>
+                                        </td>
+                                        <td><p>Variable name.</p>
+</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>args.label</td>
+                                        <td>
+                                            <code>String</code>
+                                            <code>Array.&lt;String&gt;</code>
+                                        </td>
+                                        <td><p>Label(s) of node.</p>
+</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>args.props</td>
+                                        <td>
+                                            <code>Object</code>
+                                        </td>
+                                        <td><p>Node properties map.</p>
+</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </section>
+
+
+
+
+                        <section class="returns">
+
+                            <h3>Returns</h3>
+
+
+                            <p><code>Void</code></p>
+
+
+                        </section>
+
+                    </div>
+
+
+                    <div class="method scope-public">
+
+                        <h2 id="src-query-index.js-pattern.prototype.constructor">
+                            <a href="#src-query-index.js-pattern.prototype.constructor" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.constructor(callee, model, opts)">Pattern.constructor(callee, model, opts)</span>
                         </h2>
 
                         <div class="description lead">
@@ -713,9 +848,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-match">
-                            <a href="#src-query-index.js-match" class="permalink">#</a>
-                            <span class="method-name" title="match(pattern)">match(pattern)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.match">
+                            <a href="#src-query-index.js-pattern.prototype.match" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.match(pattern)">Pattern.match(pattern)</span>
                         </h2>
 
                         <div class="description lead">
@@ -795,9 +930,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-hasrelation">
-                            <a href="#src-query-index.js-hasrelation" class="permalink">#</a>
-                            <span class="method-name" title="hasRelation(pattern)">hasRelation(pattern)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.hasrelation">
+                            <a href="#src-query-index.js-pattern.prototype.hasrelation" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.hasRelation(pattern)">Pattern.hasRelation(pattern)</span>
                         </h2>
 
                         <div class="description lead">
@@ -866,9 +1001,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-hasdirectedrelation">
-                            <a href="#src-query-index.js-hasdirectedrelation" class="permalink">#</a>
-                            <span class="method-name" title="hasDirectedRelation(pattern)">hasDirectedRelation(pattern)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.hasdirectedrelation">
+                            <a href="#src-query-index.js-pattern.prototype.hasdirectedrelation" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.hasDirectedRelation(pattern)">Pattern.hasDirectedRelation(pattern)</span>
                         </h2>
 
                         <div class="description lead">
@@ -937,9 +1072,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-hasreversedirectedrelation">
-                            <a href="#src-query-index.js-hasreversedirectedrelation" class="permalink">#</a>
-                            <span class="method-name" title="hasReverseDirectedRelation(pattern)">hasReverseDirectedRelation(pattern)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.hasreversedirectedrelation">
+                            <a href="#src-query-index.js-pattern.prototype.hasreversedirectedrelation" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.hasReverseDirectedRelation(pattern)">Pattern.hasReverseDirectedRelation(pattern)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1008,9 +1143,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-tonode">
-                            <a href="#src-query-index.js-tonode" class="permalink">#</a>
-                            <span class="method-name" title="toNode(pattern)">toNode(pattern)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.tonode">
+                            <a href="#src-query-index.js-pattern.prototype.tonode" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.toNode(pattern)">Pattern.toNode(pattern)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1079,9 +1214,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-where">
-                            <a href="#src-query-index.js-where" class="permalink">#</a>
-                            <span class="method-name" title="where(filters, options)">where(filters, options)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.where">
+                            <a href="#src-query-index.js-pattern.prototype.where" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.where(filters, options)">Pattern.where(filters, options)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1179,9 +1314,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-orderby">
-                            <a href="#src-query-index.js-orderby" class="permalink">#</a>
-                            <span class="method-name" title="orderBy(params)">orderBy(params)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.orderby">
+                            <a href="#src-query-index.js-pattern.prototype.orderby" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.orderBy(params)">Pattern.orderBy(params)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1264,9 +1399,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-skip">
-                            <a href="#src-query-index.js-skip" class="permalink">#</a>
-                            <span class="method-name" title="skip(num)">skip(num)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.skip">
+                            <a href="#src-query-index.js-pattern.prototype.skip" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.skip(num)">Pattern.skip(num)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1334,9 +1469,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-limit">
-                            <a href="#src-query-index.js-limit" class="permalink">#</a>
-                            <span class="method-name" title="limit(num)">limit(num)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.limit">
+                            <a href="#src-query-index.js-pattern.prototype.limit" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.limit(num)">Pattern.limit(num)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1404,9 +1539,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-delete">
-                            <a href="#src-query-index.js-delete" class="permalink">#</a>
-                            <span class="method-name" title="delete(vars, opts)">delete(vars, opts)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.delete">
+                            <a href="#src-query-index.js-pattern.prototype.delete" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.delete(vars, opts)">Pattern.delete(vars, opts)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1494,9 +1629,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-detachdelete">
-                            <a href="#src-query-index.js-detachdelete" class="permalink">#</a>
-                            <span class="method-name" title="detachDelete(vars)">detachDelete(vars)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.detachdelete">
+                            <a href="#src-query-index.js-pattern.prototype.detachdelete" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.detachDelete(vars)">Pattern.detachDelete(vars)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1565,9 +1700,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-remove">
-                            <a href="#src-query-index.js-remove" class="permalink">#</a>
-                            <span class="method-name" title="remove(pattern)">remove(pattern)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.remove">
+                            <a href="#src-query-index.js-pattern.prototype.remove" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.remove(pattern)">Pattern.remove(pattern)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1636,9 +1771,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-removeproperty">
-                            <a href="#src-query-index.js-removeproperty" class="permalink">#</a>
-                            <span class="method-name" title="removeProperty(variable, property)">removeProperty(variable, property)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.removeproperty">
+                            <a href="#src-query-index.js-pattern.prototype.removeproperty" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.removeProperty(variable, property)">Pattern.removeProperty(variable, property)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1717,9 +1852,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-return">
-                            <a href="#src-query-index.js-return" class="permalink">#</a>
-                            <span class="method-name" title="return(fields)">return(fields)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.return">
+                            <a href="#src-query-index.js-pattern.prototype.return" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.return(fields)">Pattern.return(fields)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1788,9 +1923,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-count">
-                            <a href="#src-query-index.js-count" class="permalink">#</a>
-                            <span class="method-name" title="count()">count()</span>
+                        <h2 id="src-query-index.js-pattern.prototype.count">
+                            <a href="#src-query-index.js-pattern.prototype.count" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.count()">Pattern.count()</span>
                         </h2>
 
                         <div class="description lead">
@@ -1824,9 +1959,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-union">
-                            <a href="#src-query-index.js-union" class="permalink">#</a>
-                            <span class="method-name" title="union()">union()</span>
+                        <h2 id="src-query-index.js-pattern.prototype.union">
+                            <a href="#src-query-index.js-pattern.prototype.union" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.union()">Pattern.union()</span>
                         </h2>
 
                         <div class="description lead">
@@ -1860,9 +1995,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-create">
-                            <a href="#src-query-index.js-create" class="permalink">#</a>
-                            <span class="method-name" title="create(pattern)">create(pattern)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.create">
+                            <a href="#src-query-index.js-pattern.prototype.create" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.create(pattern)">Pattern.create(pattern)</span>
                         </h2>
 
                         <div class="description lead">
@@ -1932,9 +2067,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-merge">
-                            <a href="#src-query-index.js-merge" class="permalink">#</a>
-                            <span class="method-name" title="merge(pattern)">merge(pattern)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.merge">
+                            <a href="#src-query-index.js-pattern.prototype.merge" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.merge(pattern)">Pattern.merge(pattern)</span>
                         </h2>
 
                         <div class="description lead">
@@ -2004,9 +2139,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-set">
-                            <a href="#src-query-index.js-set" class="permalink">#</a>
-                            <span class="method-name" title="set(pattern, upSert)">set(pattern, upSert)</span>
+                        <h2 id="src-query-index.js-pattern.prototype.set">
+                            <a href="#src-query-index.js-pattern.prototype.set" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.set(pattern, upSert)">Pattern.set(pattern, upSert)</span>
                         </h2>
 
                         <div class="description lead">
@@ -2086,9 +2221,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
-                        <h2 id="src-query-index.js-construct">
-                            <a href="#src-query-index.js-construct" class="permalink">#</a>
-                            <span class="method-name" title="construct()">construct()</span>
+                        <h2 id="src-query-index.js-pattern.prototype.construct">
+                            <a href="#src-query-index.js-pattern.prototype.construct" class="permalink">#</a>
+                            <span class="method-name" title="Pattern.construct()">Pattern.construct()</span>
                         </h2>
 
                         <div class="description lead">
