@@ -51,7 +51,13 @@ Person.create({
         .then(docs => {
             console.log(docs);   // [Node {
                                  //      labels: ['Person'],
-                                 //      properties: {name: 'foo', age: 25, tags: ['group A', 'group B', 'group C'], isAdmin: false, createdAt: 1529831729}
+                                 //      properties: {
+                                 //         name: 'foo',
+                                 //         age: 25,
+                                 //         tags: ['group A', 'group B', 'group C'],
+                                 //         isAdmin: false,
+                                 //         createdAt: 1529831729
+                                 //      }
                                  // }]
         }).catch(e => {
              console.error(e);
@@ -72,7 +78,13 @@ query.match({
         .then(docs => {
             console.log(docs);  // [Node {
                                 //      labels: ['Person'],
-                                //      properties: {name: 'foo', age: 25, tags: ['group A', 'group B', 'group C'], isAdmin: false, createdAt: 1529831729}
+                                //      properties: {
+                                //          name: 'foo',
+                                //          age: 25,
+                                //          tags: ['group A', 'group B', 'group C'],
+                                //          isAdmin: false,
+                                //          createdAt: 1529831729
+                                //      }
                                 // }]
         }).catch(e => {
             console.error(e);
@@ -93,7 +105,13 @@ Person.match({
     .then(docs => {
         console.log(docs);   // [Node {
                              //      labels: ['Person', 'Admin'],
-                             //      properties: {name: 'bar', age: 30, tags: ['group A', 'group B', 'group C'], isAdmin: false, createdAt: 1529831729}
+                             //      properties: {
+                             //         name: 'bar',
+                             //         age: 30,
+                             //         tags: ['group A', 'group B', 'group C'],
+                             //         isAdmin: false,
+                             //         createdAt: 1529831729
+                             //      }
                              // }]
     });
 
@@ -105,7 +123,13 @@ Person.match({variable: 'n', label: 'Admin'})
     .then(docs => {
         console.log(docs);   // [Node {
                              //      labels: ['Person'],
-                             //      properties: {name: 'bar', age: 30, tags: ['group A', 'group B', 'group C'], isAdmin: false, createdAt: 1529831729}
+                             //      properties: {
+                             //         name: 'bar',
+                             //         age: 30,
+                             //         tags: ['group A', 'group B', 'group C'],
+                             //         isAdmin: false,
+                             //         createdAt: 1529831729
+                             //      }
                              // }]
     });
 
