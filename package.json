@@ -1,6 +1,6 @@
 {
   "name": "neo4j-schema",
-  "version": "0.1.8",
+  "version": "0.2.0",
   "description": "A dead-simple client for neo4j in Javascript.",
   "main": "index.js",
   "dependencies": {

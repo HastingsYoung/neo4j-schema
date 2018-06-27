@@ -77,4 +77,47 @@ query.match({
         }).catch(e => {
             console.error(e);
         });
+
+// Set
+Person.match({
+    variable: 'n',
+    label: 'Admin'
+}).set({
+    variable: 'n',
+    props: {
+        name: 'bar',
+        age: 30
+    }
+}).return(['*'])
+    .exec()
+    .then(docs => {
+        console.log(docs);   // [Node {
+                             //      labels: ['Person', 'Admin'],
+                             //      properties: {name: 'bar', age: 30, tags: ['group A', 'group B', 'group C'], isAdmin: false, createdAt: 1529831729}
+                             // }]
+    });
+
+// Remove Label
+Person.match({variable: 'n', label: 'Admin'})
+    .remove({variable: 'n', label: 'Admin'})
+    .return(['*'])
+    .exec()
+    .then(docs => {
+        console.log(docs);   // [Node {
+                             //      labels: ['Person'],
+                             //      properties: {name: 'bar', age: 30, tags: ['group A', 'group B', 'group C'], isAdmin: false, createdAt: 1529831729}
+                             // }]
+    });
+
+// Delete
+Person.match({
+    variable: 'n',
+    label: 'Person'
+}).detachDelete(['n'])
+    .exec()
+    .then(docs => {
+        console.log(docs);   // Node deleted
+    });
+
+
 ```

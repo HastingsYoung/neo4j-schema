@@ -168,7 +168,7 @@ describe('Query Test', function () {
         before(function (done) {
             Person.create({
                 variable: 'n',
-                label: 'Person',
+                label: ['Person', 'Admin'],
                 props: nodeObj
             })
                 .return(['*'])
@@ -252,6 +252,25 @@ describe('Query Test', function () {
                 .removeProperty('n', 'name')
                 .exec()
                 .then(docs => {
+                    done();
+                });
+        });
+
+        it('should be able to update property from matched records', function (done) {
+
+            Person.match({
+                variable: 'n',
+                label: 'Admin'
+            }).set({
+                variable: 'n',
+                props: {
+                    name: 'bar',
+                    age: 30
+                }
+            }).return(['*'])
+                .exec()
+                .then(docs => {
+                    expect(docs).to.be.an('array');
                     done();
                 });
         });
