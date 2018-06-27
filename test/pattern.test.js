@@ -1,7 +1,6 @@
 const {expect} = require('chai');
 const Neo4JDB = require('../src/index');
-const Query = Neo4JDB.Query;
-const Pattern = Query.Pattern;
+const Pattern = require('../src/query/pattern');
 
 describe('Pattern Test', function () {
 
