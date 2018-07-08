@@ -26,8 +26,16 @@ class Session {
         return this._db.model(name, schema);
     }
 
+    getConnection() {
+        return this._conn;
+    }
+
+    release() {
+        return this._db.releaseSession(this);
+    }
+
     close() {
-        return this._db.closeSession(this);
+        return this._db.closeSession(this._conn);
     }
 }
 

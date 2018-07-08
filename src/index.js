@@ -82,6 +82,11 @@ class DB {
         throw new Error(Errors.DB_NOT_ALIVE);
     }
 
+    async releaseSession(session) {
+
+        await this._pool.release(session.getConnection());
+    }
+
     async closeSession(session) {
         await this._pool.destroy(session);
     }

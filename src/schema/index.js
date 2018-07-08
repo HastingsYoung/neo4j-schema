@@ -160,6 +160,11 @@ class Schema {
                 },
                 writable: false,
                 enumerable: true
+            },
+            close: {
+                value: () => db.close(),
+                writable: false,
+                enumerable: true
             }
         });
 
