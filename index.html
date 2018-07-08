@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
-<title>neo4j-schema 0.2.1 &#8212; A dead-simple client for neo4j in Javascript.</title>
+<title>neo4j-schema 0.2.3 &#8212; A dead-simple client for neo4j in Javascript.</title>
 <meta name="description" content="A dead-simple client for neo4j in Javascript.">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -163,7 +163,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
         <h1>
                 <a href="https://github.com/HastingsYoung/neo4j-schema#readme">neo4j-schema</a>
-            <small>0.2.1</small>
+            <small>0.2.3</small>
         </h1>
 
         <p>A dead-simple client for neo4j in Javascript.</p>
@@ -306,6 +306,11 @@ input[type="search"]::-webkit-search-cancel-button {
 
 
                         <li class="method-link scope-public">
+                            <a href="#src-query-index.js-createmany" title="createMany">createMany</a>
+                        </li>
+
+
+                        <li class="method-link scope-public">
                             <a href="#src-query-index.js-merge" title="merge">merge</a>
                         </li>
 
@@ -428,6 +433,26 @@ input[type="search"]::-webkit-search-cancel-button {
                                             <code>Object</code>
                                         </td>
                                         <td><p>Connection options (uri: <code>&lt;String&gt;</code>, username: <code>&lt;String&gt;</code>, password: <code>&lt;String&gt;</code>).</p>
+</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>options.maxSessionCount</td>
+                                        <td>
+                                            <code>Integer</code>
+                                        </td>
+                                        <td><p>Maximum in-parallel sessions running inside the DB instance.</p>
+</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>options.maxWaitingCount</td>
+                                        <td>
+                                            <code>Integer</code>
+                                        </td>
+                                        <td><p>Maximum requests waiting in queue to acquire session.</p>
 </td>
                                         <td>
                                         </td>
@@ -1917,6 +1942,78 @@ input[type="search"]::-webkit-search-cancel-button {
                                             <code>String</code>
                                         </td>
                                         <td><p>The pattern specifying which instance to create.</p>
+</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </section>
+
+
+
+
+                        <section class="returns">
+
+                            <h3>Returns</h3>
+
+
+
+                                    <p>
+                                            <code>Query</code>
+                                    </p>
+
+                                    
+
+
+
+                        </section>
+
+                    </div>
+
+
+                    <div class="method scope-public">
+
+                        <h2 id="src-query-index.js-createmany">
+                            <a href="#src-query-index.js-createmany" class="permalink">#</a>
+                            <span class="method-name" title="createMany(patterns)">createMany(patterns)</span>
+                        </h2>
+
+                        <div class="description lead">
+
+                            <p>Bulk creation clause.</p>
+
+
+                        </div>
+
+
+                        <section class="parameters">
+
+                            <h3>Parameters</h3>
+
+                            <div class="table-responsive">
+                                <table class="table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td>patterns</td>
+                                        <td>
+                                            <code>Object.&lt;Pattern&gt;</code>
+                                            <code>String</code>
+                                        </td>
+                                        <td><p>The patterns to create in a single query.</p>
 </td>
                                         <td>
                                         </td>
