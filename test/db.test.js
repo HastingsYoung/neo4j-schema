@@ -7,7 +7,10 @@ describe('DB Test', function () {
 
         it('should be able to connect to NEO4J Database', function (done) {
 
-            const db = new Neo4JDB().connect();
+            const db = new Neo4JDB({
+                username: 'neo4j-dev',
+                password: 'neo4j-dev'
+            }).connect();
 
             db.run(`RETURN 1;`)
                 .then(docs => {

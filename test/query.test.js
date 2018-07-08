@@ -131,7 +131,10 @@ describe('Query Test', function () {
 
     describe('Construct simple read query.', function () {
 
-        const db = new Neo4JDB().connect();
+        const db = new Neo4JDB({
+            username: 'neo4j-dev',
+            password: 'neo4j-dev'
+        }).connect();
         const query = new Query(db, null, null);
 
         it('should return constructed query result', function (done) {
@@ -149,7 +152,10 @@ describe('Query Test', function () {
 
     describe('Construct simple write query.', function () {
 
-        const db = new Neo4JDB().connect();
+        const db = new Neo4JDB({
+            username: 'neo4j-dev',
+            password: 'neo4j-dev'
+        }).connect();
         const PersonSchema = Neo4JDB.Schema({
             name: String,
             age: Number,
@@ -193,10 +199,41 @@ describe('Query Test', function () {
                 });
         });
 
-        it('should be able to construct a create & return query.', function (done) {
+        it('should be able to construct a single create & return query.', function (done) {
 
             Person.create({
                 variable: 'n',
+                label: 'Person',
+                props: nodeObj
+            })
+                .return(['*'])
+                .exec()
+                .then(docs => {
+                    expect(docs).to.be.an('array');
+                    done();
+                }).catch(e => {
+                    console.error(e);
+                });
+        });
+
+        it('should be able to construct a bulk create & return query.', function (done) {
+
+            Person.createMany({
+                label: 'Person',
+                props: nodeObj
+            }, {
+                label: 'Person',
+                props: nodeObj
+            }, {
+                label: 'Person',
+                props: nodeObj
+            }, {
+                label: 'Person',
+                props: nodeObj
+            }, {
+                label: 'Person',
+                props: nodeObj
+            }, {
                 label: 'Person',
                 props: nodeObj
             })

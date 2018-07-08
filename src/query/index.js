@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const util = require('util');
+const {genAlphabet} = require('./query_utils');
 const Errors = require('../errors');
 const {KEYWORDS, SORTING_KEYS} = require('./syntax');
 const {translateFilterToQuery} = require('./filters');
@@ -221,6 +222,23 @@ class Query {
         this._stack.push(`${KEYWORDS.CREATE} (${new Pattern(_.isString(pattern) ? pattern : Object.assign({}, pattern, {
             props: this._model.validate(pattern.props)
         })).toString()})`);
+        return this;
+    }
+
+    /**
+     * Bulk creation clause.
+     * @param {...Object<Pattern> | ...String} patterns The patterns to create in a single query.
+     * @returns {Query}
+     */
+    createMany(...patterns) {
+        const alphabet = genAlphabet(patterns.length);
+        this._stack.push(`${KEYWORDS.CREATE} ${patterns.map(pattern => {
+            const p = new Pattern(_.isString(pattern) ? pattern : Object.assign({}, pattern, {
+                props: this._model.validate(pattern.props)
+            }));
+            p.alphabet = alphabet;
+            return p.toStringInParenthesis();
+        }).join(',')}`);
         return this;
     }
 

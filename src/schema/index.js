@@ -146,6 +146,11 @@ class Schema {
                 writable: false,
                 enumerable: true
             },
+            createMany: {
+                value: (...args) => new Query(db, model).createMany(...args),
+                writable: false,
+                enumerable: true
+            },
             merge: {
                 value: args => new Query(db, model).merge(args),
                 writable: false,

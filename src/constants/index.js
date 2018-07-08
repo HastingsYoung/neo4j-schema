@@ -23,8 +23,18 @@ const SCHEMA_PROP_DEFS = Object.freeze({
     ENUM: 'enum'
 });
 
+const SESSION_STATES = Object.freeze({
+    CONNECTING: 'connecting',
+    CONNECTED: 'connected',
+    DISCONNECTING: 'disconnecting',
+    DISCONNECTED: 'disconnected',
+    CLOSED: 'closed',
+    ERROR: 'error'
+});
+
 module.exports = {
     DEFAULT_DB_OPTIONS,
     SCHEMA_TYPES,
-    SCHEMA_PROP_DEFS
+    SCHEMA_PROP_DEFS,
+    SESSION_STATES
 };

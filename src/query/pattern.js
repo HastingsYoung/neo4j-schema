@@ -1,16 +1,8 @@
 const _ = require('lodash');
 const util = require('util');
+const {genAlphabet} = require('./query_utils');
+const Errors = require('../errors');
 const REGEXP_PATTERN_STR = /^(\w+)?((?:(?::?)\w+)*)(?:\s*)({.*})?/i;
-
-const genAlphabet = (n = 26) => {
-    const alphabet = [];
-    let i = 0;
-    while (i < n) {
-        alphabet.push('_x' + i);
-        i++;
-    }
-    return alphabet;
-};
 
 /**
  * The pattern used to match nodes in the graph.
@@ -26,6 +18,15 @@ class Pattern {
     constructor(args) {
 
         this.args = Object.assign({}, Pattern.decode(args));
+        this._alphabet = genAlphabet(1);
+    }
+
+    get alphabet() {
+        return this._alphabet;
+    }
+
+    set alphabet(vars) {
+        this._alphabet = vars;
     }
 
     static decode(args) {
@@ -84,22 +85,22 @@ class Pattern {
     }
 
     toLabelString() {
-        const pattern = this.args,
-            alphabet = genAlphabet(1);
-        return `${pattern.variable || alphabet.pop()}${pattern.hasOwnProperty('label') ? ':' + pattern.label.join(':') : ''}`;
+        const pattern = this.args;
+        return `${pattern.variable || this._alphabet.pop()}${pattern.hasOwnProperty('label') ? ':' + pattern.label.join(':') : ''}`;
     }
 
     toMapString() {
-        const pattern = this.args,
-            alphabet = genAlphabet(1);
-        return `${pattern.variable || alphabet.pop()}${pattern.props ? ' ' + util.inspect(pattern.props) : ''}`;
+        const pattern = this.args;
+        return `${pattern.variable || this._alphabet.pop()}${pattern.props ? ' ' + util.inspect(pattern.props) : ''}`;
     }
 
     toString() {
-        const pattern = this.args,
-            alphabet = genAlphabet(1);
+        const pattern = this.args;
+        return `${pattern.variable || this._alphabet.pop()}${pattern.hasOwnProperty('label') ? ':' + pattern.label.join(':') : ''}${pattern.props ? ' ' + util.inspect(pattern.props) : ''}`;
+    }
 
-        return `${pattern.variable || alphabet.pop()}${pattern.hasOwnProperty('label') ? ':' + pattern.label.join(':') : ''}${pattern.props ? ' ' + util.inspect(pattern.props) : ''}`;
+    toStringInParenthesis() {
+        return `(${this.toString()})`;
     }
 }
 

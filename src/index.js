@@ -14,6 +14,8 @@ class DB {
      * Database constructor.
      * @param {Object} options DB options.
      * @param {Object} options.conn Connection options (uri: `<String>`, username: `<String>`, password: `<String>`).
+     * @param {Integer} options.maxSessionCount Maximum in-parallel sessions running inside the DB instance.
+     * @param {Integer} options.maxWaitingCount Maximum requests waiting in queue to acquire session.
      * @example
      * const db = new Neo4JDB({conn: {uri: 'bolt://localhost:7474', username: 'neo4j', password: 'neo4j'}}).connect();
      * @returns {DB}
@@ -33,11 +35,9 @@ class DB {
         return {
             maxSessionCount: Defs.DEFAULT_DB_OPTIONS.MAX_SESSION_COUNT,
             maxWaitingCount: Defs.DEFAULT_DB_OPTIONS.MAX_WAITING_COUNT,
-            conn: {
-                uri: 'bolt://localhost',
-                username: 'neo4j-dev',
-                password: 'neo4j-dev'
-            }
+            uri: 'bolt://localhost',
+            username: 'neo4j',
+            password: 'neo4j'
         };
     }
 
@@ -47,8 +47,8 @@ class DB {
      * @returns {DB}
      */
     connect(...configs) {
-
-        this._driver = driver(this._options.conn, ...configs);
+        const {uri, username, password} = this._options;
+        this._driver = driver({uri, username, password}, ...configs);
 
         const {
             maxSessionCount,
@@ -83,7 +83,6 @@ class DB {
     }
 
     async releaseSession(session) {
-
         await this._pool.release(session.getConnection());
     }
 
