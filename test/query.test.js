@@ -90,7 +90,7 @@ describe('Query Test', function () {
             done();
         });
 
-        it('should be able to construct a match & return query with plural variables.', function (done) {
+        it.only('should be able to construct a match & return query with plural variables.', function (done) {
             const query = new Query();
 
             const construction = query.match({
@@ -101,6 +101,14 @@ describe('Query Test', function () {
                 label: 'Relational'
             })
                 .with(['user', 'db'])
+                .where({
+                    user: {
+                        tags: {$elemMatch: 'Tar'}
+                    },
+                    db: {
+                        name: {$or: ['Foo', 'Bar']}
+                    }
+                })
                 .return(['*'])
                 .construct();
 

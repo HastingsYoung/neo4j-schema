@@ -49,6 +49,12 @@ const translateFilterToQuery = (sub, fts = {}) => {
                     case '$nin':
                         query.push(`${KEYWORDS.NOT} ${sub}.${k} ${KEYWORDS.IN} [${target[tk].map(tv => _.isString(tv) ? `"${tv}"`: tv).join(',')}]`);
                         break;
+                    case '$or':
+                        query.push(`${target[tk].map(tv => _.isString(tv) ? `${sub}.${k} = "${tv}"`: tv).join(` ${KEYWORDS.OR} `)}`);
+                        break;
+                    case '$elemMatch':
+                        query.push(`any(_x ${KEYWORDS.IN} ${sub}.${k} exists(${_.isString(target[tk]) ? `"${target[tk]}"`: target[tk]}))`);
+                        break;
                     default:
                     }
                 });

@@ -11,6 +11,7 @@ const KEYWORDS = Object.freeze({
     MERGE: 'MERGE',
     SET: 'SET',
     IN: 'IN',
+    OR: 'OR',
     AND: 'AND',
     NOT: 'NOT',
     DETACH: 'DETACH',
