@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1">
-<title>neo4j-schema 0.2.3 &#8212; A dead-simple client for neo4j in Javascript.</title>
+<title>neo4j-schema 0.2.4 &#8212; A dead-simple client for neo4j in Javascript.</title>
 <meta name="description" content="A dead-simple client for neo4j in Javascript.">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -163,7 +163,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
         <h1>
                 <a href="https://github.com/HastingsYoung/neo4j-schema#readme">neo4j-schema</a>
-            <small>0.2.3</small>
+            <small>0.2.4</small>
         </h1>
 
         <p>A dead-simple client for neo4j in Javascript.</p>
@@ -282,6 +282,11 @@ input[type="search"]::-webkit-search-cancel-button {
 
                         <li class="method-link scope-public">
                             <a href="#src-query-index.js-removeproperty" title="removeProperty">removeProperty</a>
+                        </li>
+
+
+                        <li class="method-link scope-public">
+                            <a href="#src-query-index.js-with" title="with">with</a>
                         </li>
 
 
@@ -717,7 +722,7 @@ input[type="search"]::-webkit-search-cancel-button {
                                     <tr>
                                         <td>model</td>
                                         <td>
-                                            <code>Model</code>
+                                            <code>Function.&lt;Model&gt;</code>
                                         </td>
                                         <td><p>The model of which such query should be constrained to.</p>
 </td>
@@ -760,7 +765,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
                         <h2 id="src-query-index.js-match">
                             <a href="#src-query-index.js-match" class="permalink">#</a>
-                            <span class="method-name" title="match(pattern)">match(pattern)</span>
+                            <span class="method-name" title="match(patterns)">match(patterns)</span>
                         </h2>
 
                         <div class="description lead">
@@ -789,10 +794,10 @@ input[type="search"]::-webkit-search-cancel-button {
 
                                     <tbody>
                                     <tr>
-                                        <td>pattern</td>
+                                        <td>patterns</td>
                                         <td>
-                                            <code>Object.&lt;Pattern&gt;</code>
-                                            <code>String</code>
+                                            <code>Array.&lt;Pattern&gt;</code>
+                                            <code>Array.&lt;String&gt;</code>
                                         </td>
                                         <td></td>
                                         <td>
@@ -1762,6 +1767,77 @@ input[type="search"]::-webkit-search-cancel-button {
 
                     <div class="method scope-public">
 
+                        <h2 id="src-query-index.js-with">
+                            <a href="#src-query-index.js-with" class="permalink">#</a>
+                            <span class="method-name" title="with(fields)">with(fields)</span>
+                        </h2>
+
+                        <div class="description lead">
+
+                            <p>With clause.</p>
+
+
+                        </div>
+
+
+                        <section class="parameters">
+
+                            <h3>Parameters</h3>
+
+                            <div class="table-responsive">
+                                <table class="table">
+
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td>fields</td>
+                                        <td>
+                                            <code>Array.&lt;String&gt;</code>
+                                        </td>
+                                        <td><p>The fields to carry over explicitly in a query.</p>
+</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </section>
+
+
+
+
+                        <section class="returns">
+
+                            <h3>Returns</h3>
+
+
+
+                                    <p>
+                                            <code>Query</code>
+                                    </p>
+
+                                    
+
+
+
+                        </section>
+
+                    </div>
+
+
+                    <div class="method scope-public">
+
                         <h2 id="src-query-index.js-return">
                             <a href="#src-query-index.js-return" class="permalink">#</a>
                             <span class="method-name" title="return(fields)">return(fields)</span>
@@ -2275,7 +2351,7 @@ input[type="search"]::-webkit-search-cancel-button {
 
                         <h2 id="src-query-pattern.js-pattern.prototype.constructor">
                             <a href="#src-query-pattern.js-pattern.prototype.constructor" class="permalink">#</a>
-                            <span class="method-name" title="Pattern.constructor(args)">Pattern.constructor(args)</span>
+                            <span class="method-name" title="Pattern.constructor(args, alphabet)">Pattern.constructor(args, alphabet)</span>
                         </h2>
 
                         <div class="description lead">
@@ -2339,6 +2415,16 @@ input[type="search"]::-webkit-search-cancel-button {
                                             <code>Object</code>
                                         </td>
                                         <td><p>Node properties map.</p>
+</td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>alphabet</td>
+                                        <td>
+                                            <code>Function.&lt;String&gt;</code>
+                                        </td>
+                                        <td><p>Generate alphabet series.</p>
 </td>
                                         <td>
                                         </td>
