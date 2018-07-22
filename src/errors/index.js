@@ -5,6 +5,7 @@ const ERR_INVALID_QUERY = 'Query invalid: please pass in an instance of Query to
 const ERR_EMPTY_QUERY = 'Query invalid: Query to be executed must not be empty.';
 const ERR_INVALID_PATTERN_STR = 'Pattern invalid: pattern must accept a valid Cypher pattern string.';
 const ERR_INVALID_RETURN_FIELDS = 'Pattern invalid: Return fields must be an array of string specifying desired fields to return from a query.';
+const ERR_INVALID_WITH_FIELDS = 'Pattern invalid: With fields must be an array of string specifying desired fields to return from a query.';
 const ERR_INVALID_FILTERS = 'Pattern invalid: to translate a query the filter passed in must be compliant with Filter interface.';
 
 module.exports = {
@@ -15,5 +16,6 @@ module.exports = {
     ERR_EMPTY_QUERY,
     ERR_INVALID_PATTERN_STR,
     ERR_INVALID_RETURN_FIELDS,
+    ERR_INVALID_WITH_FIELDS,
     ERR_INVALID_FILTERS
 };

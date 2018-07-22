@@ -90,6 +90,25 @@ describe('Query Test', function () {
             done();
         });
 
+        it('should be able to construct a match & return query with plural variables.', function (done) {
+            const query = new Query();
+
+            const construction = query.match({
+                label: 'Database'
+            }, {
+                label: 'Graph'
+            }, {
+                label: 'Relational'
+            })
+                .with(['user', 'db'])
+                .return(['*'])
+                .construct();
+
+            expect(construction).to.be.a('string');
+
+            done();
+        });
+
         it('should be able to construct a sorting query.', function (done) {
 
             const query = new Query();

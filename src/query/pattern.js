@@ -14,11 +14,12 @@ class Pattern {
      * @param {String} args.variable Variable name.
      * @param {String | Array<String>} args.label Label(s) of node.
      * @param {Object} args.props Node properties map.
+     * @param {Function<String>} alphabet Generate alphabet series.
      */
-    constructor(args) {
+    constructor(args, alphabet) {
 
         this.args = Object.assign({}, Pattern.decode(args));
-        this._alphabet = genAlphabet(1);
+        this._alphabet = _.isFunction(alphabet) ? new alphabet() : new (genAlphabet(1))();
     }
 
     get alphabet() {

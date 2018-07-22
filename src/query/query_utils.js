@@ -1,9 +1,14 @@
 exports.genAlphabet = (n = 26) => {
-    const alphabet = [];
+    const GenFunc = function () {
+    };
+    GenFunc.prototype.alphabet = [];
+    GenFunc.prototype.pop = function () {
+        return this.alphabet.pop();
+    };
     let i = 0;
     while (i < n) {
-        alphabet.push('_x' + i);
+        GenFunc.prototype.alphabet.push('_x' + i);
         i++;
     }
-    return alphabet;
+    return GenFunc;
 };

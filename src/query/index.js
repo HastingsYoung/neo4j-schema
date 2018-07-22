@@ -19,7 +19,7 @@ class Query {
     /**
      * The Query constructor used for building queries. This could be instantiated by calling Model behavioural functions such as `Model.match()`.
      * @param {DB | Session} callee The callee to run such query when it's been constructed.
-     * @param {Model} model The model of which such query should be constrained to.
+     * @param {Function<Model>} model The model of which such query should be constrained to.
      * @param {Object} opts
      */
     constructor(callee, model, opts) {
@@ -31,12 +31,13 @@ class Query {
 
     /**
      * Match clause.
-     * @param {Object<Pattern> | String} pattern
+     * @param {Array<Pattern> | Array<String>} patterns
      * @example match('patternStr' | {label: 'str', variable: 'n'});
      * @returns {Query}
      */
-    match(pattern) {
-        this._stack.push(`${KEYWORDS.MATCH} (${new Pattern(pattern).toString()})`);
+    match(...patterns) {
+        const genFunc = genAlphabet(patterns.length);
+        this._stack.push(`${KEYWORDS.MATCH} ${patterns.map(pattern => `(${new Pattern(pattern, genFunc).toString()})`).join(',')}`);
         return this;
     }
 
@@ -183,6 +184,19 @@ class Query {
     }
 
     /**
+     * With clause.
+     * @param {Array<String>} fields The fields to carry over explicitly in a query.
+     * @returns {Query}
+     */
+    with(fields) {
+        if (!(_.isArray(fields))) {
+            throw new Error(Errors.ERR_INVALID_WITH_FIELDS);
+        }
+        this._stack.push(`${KEYWORDS.WITH} ${fields.join(',')}`);
+        return this;
+    }
+
+    /**
      * Return clause.
      * @param {Array<String>} fields The fields to return in a query.
      * @returns {Query}
@@ -231,13 +245,11 @@ class Query {
      * @returns {Query}
      */
     createMany(...patterns) {
-        const alphabet = genAlphabet(patterns.length);
+        const genFunc = genAlphabet(patterns.length);
         this._stack.push(`${KEYWORDS.CREATE} ${patterns.map(pattern => {
-            const p = new Pattern(_.isString(pattern) ? pattern : Object.assign({}, pattern, {
+            return new Pattern(_.isString(pattern) ? pattern : Object.assign({}, pattern, {
                 props: this._model.validate(pattern.props)
-            }));
-            p.alphabet = alphabet;
-            return p.toStringInParenthesis();
+            }), genFunc).toStringInParenthesis();
         }).join(',')}`);
         return this;
     }
