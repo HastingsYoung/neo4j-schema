@@ -137,7 +137,7 @@ class Schema {
 
         Object.defineProperties(model, {
             match: {
-                value: args => new Query(db, model).match(args),
+                value: (...args) => new Query(db, model).match(...args),
                 writable: false,
                 enumerable: true
             },
